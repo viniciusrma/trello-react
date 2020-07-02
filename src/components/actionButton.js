@@ -34,16 +34,22 @@ class ActionButton extends React.Component {
     const { dispatch } = this.props;
     const { text } = this.state;
     if (text) {
+      this.setState({
+        text: ""
+      });
       dispatch(addList(text));
     }
     return;
   };
 
   handleAddCard = () => {
-    const { dispatch } = this.props;
+    const { dispatch, listID } = this.props;
     const { text } = this.state;
     if (text) {
-      dispatch(addCard(id, text));
+      this.setState({
+        text: ""
+      });
+      dispatch(addCard(listID, text));
     }
     return;
   }
