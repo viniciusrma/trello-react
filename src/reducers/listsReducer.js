@@ -1,5 +1,4 @@
 import { CONSTANTS } from "../actions";
-import { Droppable } from "react-beautiful-dnd";
 
 let listID = 2;
 let cardID = 6;
