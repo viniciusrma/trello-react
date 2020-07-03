@@ -54,19 +54,19 @@ class ActionButton extends React.Component {
     return;
   }
 
-    
+
   renderAddButton = () => {
     const { list } = this.props;
-  
+
     const buttonText = list ? "Add another list" : "Add another card";
     const buttonTextOpacity = list ? 1 : 0.5;
     const buttonTextColor = list ? "white" : "inherit";
     const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
 
     return (
-      <div 
+      <div
         onClick={this.openForm}
-        style= {{
+        style={{
           ...styles.buttonGroup,
           opacity: buttonTextOpacity,
           color: buttonTextColor,
@@ -74,17 +74,17 @@ class ActionButton extends React.Component {
         }}
       >
         <Icon>add</Icon>
-        <p> { buttonText } </p>
+        <p> {buttonText} </p>
       </div>
     );
   };
 
   renderForm = () => {
     const { list } = this.props;
-    
-    const placeholder = list 
-    ? "Enter list title..." 
-    : "Enter a title for this card...";
+
+    const placeholder = list
+      ? "Enter list title..."
+      : "Enter a title for this card...";
 
     const buttonTitle = list ? "Add list" : "Add card";
 
@@ -93,12 +93,12 @@ class ActionButton extends React.Component {
         <Card style={{
           overflow: "visible",
           minHeight: 80,
-          minWidth:272,
+          minWidth: 272,
           padding: "6px 8px 2px"
         }}
         >
-          <TextareaAutosize  
-            placeholder = {placeholder} 
+          <TextareaAutosize
+            placeholder={placeholder}
             autoFocus
             onBlur={this.closeForm}
             value={this.state.text}
@@ -107,20 +107,20 @@ class ActionButton extends React.Component {
               resize: "none",
               width: "100%",
               overflow: "hidden",
-              outline:"none",
-              border:"none"
+              outline: "none",
+              border: "none"
             }}
           />
         </Card>
         <div style={styles.formButtonGroup}>
-          <Button 
-            onMouseDown={ list ? this.handleAddList : this.handleAddCard}
-            variant="contained" 
-            style={{color: "white", backgroundColor:"#5aac44" }}
+          <Button
+            onMouseDown={list ? this.handleAddList : this.handleAddCard}
+            variant="contained"
+            style={{ color: "white", backgroundColor: "#5aac44" }}
           >
             {buttonTitle} {" "}
           </Button>
-          <Icon style={{ marginLeft: 8, cursor: "pointer"}}>close</Icon>
+          <Icon style={{ marginLeft: 8, cursor: "pointer" }}>close</Icon>
         </div>
       </div>
     );
@@ -147,4 +147,4 @@ const styles = {
   }
 };
 
-export default connect() (ActionButton);
+export default connect()(ActionButton);
