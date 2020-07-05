@@ -1,12 +1,9 @@
 import { CONSTANTS } from "../actions";
 
-
-export const addList = title => {
-  return {
-    type: CONSTANTS.ADD_LIST,
-    payload: title
-  };
-};
+export const addList = text => ({
+  type: CONSTANTS.ADD_LIST,
+  payload: { text },
+});
 
 export const sort = (
   droppableIdStart,
@@ -14,17 +11,15 @@ export const sort = (
   droppableIndexStart,
   droppableIndexEnd,
   draggableId,
-  type
-) => {
-  return {
-    type: CONSTANTS.DRAG_HAPPENED,
-    payload: {
-      droppableIdStart,
-      droppableIdEnd,
-      droppableIndexStart,
-      droppableIndexEnd,
-      draggableId,
-      type
-    }
-  };
-};
+  type,
+) => ({
+  type: CONSTANTS.DRAG_HAPPENED,
+  payload: {
+    droppableIdStart,
+    droppableIdEnd,
+    droppableIndexStart,
+    droppableIndexEnd,
+    draggableId,
+    type,
+  }
+})

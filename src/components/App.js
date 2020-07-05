@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import TrelloList from './trellolist';
 import { connect } from "react-redux";
+import styled from "styled-components";
+import TrelloList from './trellolist';
 import ActionButton from "./actionButton";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { sort } from "../actions"
-import styled from "styled-components";
+import { sort } from "../actions";
 
 const ListContainer = styled.div`
   display: flex;
@@ -12,23 +12,21 @@ const ListContainer = styled.div`
 `;
 
 class App extends Component {
-  onDragEnd = result => {
+  onDragEnd = (result) => {
     //Reordering logic
     const { destination, source, draggableId, type } = result;
     if (!destination) {
       return;
     }
 
-    this.props.dispatch(
-      sort(
+    this.props.dispatch(sort(
         source.droppabbleId,
         destination.droppableId,
         source.index,
         destination.index,
         draggableId,
-        type
-      )
-    );
+        type,
+      ))
   };
 
   render() {
@@ -39,15 +37,14 @@ class App extends Component {
         <Droppable droppableId="all-lists" direction="horizontal" type="list">
           {provided => (
             <ListContainer {...provided.droppableProps} ref={provided.innerRef} >
-              {lists.map((list, index) => (
+              {lists.map(({id, title, cards}, index) => 
                 <TrelloList
-                  listID={list.id}
-                  key={list.id}
-                  title={list.title}
-                  cards={list.cards}
-                  index={index}
-                />
-              ))}
+                  key={id}
+                  id={id}
+                  title={title}
+                  cards={cards}
+                  index={index}/>
+              )}
               {provided.placeholder}
               <ActionButton list />
             </ListContainer>
@@ -59,7 +56,7 @@ class App extends Component {
 };
 
 const mapStateToProps = state => ({
-  lists: state.lists
+  lists: state.lists,
 });
 
 export default connect(mapStateToProps)(App);
